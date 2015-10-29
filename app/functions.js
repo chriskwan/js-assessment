@@ -76,7 +76,26 @@ exports.functionsAnswers = {
   },
 
   curryIt : function(fn) {
-    var args = Array.prototype.slice.call(arguments, 1);
-    return fn.bind(this, args);
+    // Do the following but not hard-coded.
+    // (i.e.: you shouldn't have to know how many parameters `fn` takes)
+    // return function(a) {
+    //   return function(b) {
+    //     return function(c) {
+    //       return fn(a, b, c);
+    //     };
+    //   };
+    // };
+
+    // Written as function expressions:
+    // var fa = function(a) {
+    //   var fb = function(b) {
+    //     var fc = function(c) {
+    //       return fn(a, b, c);
+    //     };
+    //     return fc;
+    //   };
+    //   return fb;
+    // }
+    // return fa;
   }
 };
