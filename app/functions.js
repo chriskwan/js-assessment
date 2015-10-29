@@ -97,5 +97,21 @@ exports.functionsAnswers = {
     //   return fb;
     // }
     // return fa;
+
+    // Written without caring about the parameter name:
+    var fa = function(dontCare) {
+      var aArg = Array.prototype.slice.call(arguments);
+      var fb = function(dontCare) {
+        var bArg =  Array.prototype.slice.call(arguments);
+        var fc = function(dontCare) {
+          var cArg =  Array.prototype.slice.call(arguments);
+          var allArgs = aArg.concat(bArg, cArg);
+          return fn.apply(this, allArgs);
+        };
+        return fc;
+      };
+      return fb;
+    }
+    return fa;    
   }
 };
