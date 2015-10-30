@@ -99,19 +99,79 @@ exports.functionsAnswers = {
     // return fa;
 
     // Written without caring about the parameter name:
-    var fa = function(dontCare) {
-      var aArg = Array.prototype.slice.call(arguments);
-      var fb = function(dontCare) {
-        var bArg =  Array.prototype.slice.call(arguments);
-        var fc = function(dontCare) {
-          var cArg =  Array.prototype.slice.call(arguments);
-          var allArgs = aArg.concat(bArg, cArg);
-          return fn.apply(this, allArgs);
-        };
-        return fc;
-      };
-      return fb;
+    // var fa = function(dontCare) {
+    //   var aArg = Array.prototype.slice.call(arguments);
+    //
+    //   var fb = function(dontCare) {
+    //     var bArg =  Array.prototype.slice.call(arguments);
+    //
+    //     var fc = function(dontCare) {
+    //       var cArg =  Array.prototype.slice.call(arguments);
+    //       var allArgs = aArg.concat(bArg, cArg);
+    //       return fn.apply(this, allArgs);
+    //     };
+    //
+    //     return fc;
+    //   };
+    //
+    //   return fb;
+    // };
+    //
+    // return fa;
+
+    // This is a non hard-coded version of the above
+    // It seems really complicated though
+    // so I bet there is a much simpler way
+    var argLists = [];
+    var funcs = [];
+
+    var createAndStoreFunction = function(index) {
+      // Create a function that calls an inner function
+      var func = function(dontCare) {
+        var argList = Array.prototype.slice.call(arguments);
+        argLists[index] = argList;
+
+        return funcs[index+1]; // call your inner function
+      }
+      // Store function for later
+      funcs[index] = func;
+    };
+
+    // Combine all arguments from all functions into one list
+    var getAllArgs = function() {
+      var allArgs = [];
+      for (var j=0; j<argLists.length; j++) {
+        allArgs = allArgs.concat(argLists[j]);
+      }
+      return allArgs;
+    };
+
+    var createInnermostFunction = function(index) {
+      // Create a function that calls the original `fn`
+      // but with all of the arguments from all the functions
+      var func = function(dontCare) {
+        var argList = Array.prototype.slice.call(arguments);
+        argLists[index] = argList;
+
+        var allArgs = getAllArgs();
+        return fn.apply(this, allArgs);
+      }
+      // Store function for later
+      funcs[index] = func;
+    };
+
+    // Create and store a partial function for each parameter
+    for (var i=0; i<fn.length; i++) {
+      // last parameter means we should call the original `fn`
+      if (i === fn.length-1) {
+        createInnermostFunction(i);
+      } else {
+        createAndStoreFunction(i);
+      }
     }
-    return fa;    
+    
+    // Return the outer-most function
+    return funcs[0];
   }
+
 };
