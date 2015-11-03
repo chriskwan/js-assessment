@@ -8,7 +8,8 @@ exports.regexAnswers = {
   },
 
   containsRepeatingLetter : function(str) {
-
+    var regex = /([a-zA-Z])\1/; // use backreference to see if any letter is repeated once
+    return !!str.match(regex);
   },
 
   endsWithVowel : function(str) {
