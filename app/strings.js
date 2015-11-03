@@ -27,29 +27,33 @@ exports.stringsAnswers = {
   wordWrap: function(str, cols) {
   	var newStr = "";
   	var words = str.split(" ");
-  	var curLine = "";
+  	var curLine = [];
 
   	for (var i=0; i<words.length; i++) {
   		// first word in the line
   		if (!curLine.length) {
-  			curLine += words[i];
+  			curLine.push(words[i]);
   		} else {
   			// What the current line length would be if the current word as added
   			// including the space in between the words
-  			var lineLengthWithWord = curLine.length + words[i].length + 1;
+  			var curLineLetterCount = curLine.join("").length;
+  			var lineLengthWithWord = curLineLetterCount + words[i].length + 1;
   			if (lineLengthWithWord <= cols) {
-  				curLine += " " + words[i];
+  				curLine.push(" ");
+  				curLine.push(words[i]);
   			} else { // current word needs to go on a new line
-  				newStr += curLine + "\n";
-  				curLine = "";
-  				curLine += words[i];
+  				curLine.push("\n");
+  				newStr += curLine.join("");
+  				
+  				curLine = [];
+  				curLine.push(words[i]);
   			}
   		}
   	}
 
   	// handle the last word
-  	if (curLine) {
-  		newStr += curLine;
+  	if (curLine.length) {
+  		newStr += curLine.join("");
   	}
 
   	return newStr;
