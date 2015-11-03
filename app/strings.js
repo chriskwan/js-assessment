@@ -55,6 +55,10 @@ exports.stringsAnswers = {
   	return newStr;
   },
   reverseString: function(str) {
-
+  	var revStrLetters = [];
+  	for (var i=0; i<str.length; i++) {
+  		revStrLetters.unshift(str[i]);
+  	}
+  	return revStrLetters.join("");
   }
 };
