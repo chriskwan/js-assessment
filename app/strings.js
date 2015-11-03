@@ -25,7 +25,7 @@ exports.stringsAnswers = {
   	return newStr;
   },
   wordWrap: function(str, cols) {
-  	var newStr = "";
+  	var newStr = [];
   	var words = str.split(" ");
   	var curLine = [];
 
@@ -43,7 +43,7 @@ exports.stringsAnswers = {
   				curLine.push(words[i]);
   			} else { // current word needs to go on a new line
   				curLine.push("\n");
-  				newStr += curLine.join("");
+  				newStr.push(curLine.join(""));
   				
   				curLine = [];
   				curLine.push(words[i]);
@@ -53,10 +53,10 @@ exports.stringsAnswers = {
 
   	// handle the last word
   	if (curLine.length) {
-  		newStr += curLine.join("");
+  		newStr.push(curLine.join(""));
   	}
 
-  	return newStr;
+  	return newStr.join("");
   },
   reverseString: function(str) {
   	var revStrLetters = [];
