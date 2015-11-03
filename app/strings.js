@@ -2,7 +2,7 @@ exports = (typeof window === 'undefined') ? global : window;
 
 exports.stringsAnswers = {
   reduceString: function(str, amount) {
-  	var newStr = "";
+  	var newStr = [];
   	var prevLetter;
   	var curLetter;
   	var curCount = 0;
@@ -12,17 +12,17 @@ exports.stringsAnswers = {
   		// or the first letter
   		if (curLetter === prevLetter || !prevLetter) {
   			if (curCount < amount) {
-  				newStr += curLetter;
+  				newStr.push(curLetter);
   			}
 			curCount++;
   		} else { // Looking at a new letter
-  			newStr += curLetter;
+  			newStr.push(curLetter);
   			curCount = 1;
   		}
 
 		prevLetter = curLetter;
   	}
-  	return newStr;
+  	return newStr.join("");
   },
   wordWrap: function(str, cols) {
   	var newStr = [];
