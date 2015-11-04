@@ -18,12 +18,13 @@ exports.functionsAnswers = {
   makeClosures : function(arr, fn) {
     var closures = [];
 
-    for (var i=0; i<arr.length; i++) {
-      var createFunctionForNum = function(num) {
-        return function() {
-          return fn(arr[num])
-        };
+    var createFunctionForNum = function(num) {
+      return function() {
+        return fn(arr[num])
       };
+    };
+
+    for (var i=0; i<arr.length; i++) {
       closures.push(createFunctionForNum(i));
 
       // Using an IIFE:
