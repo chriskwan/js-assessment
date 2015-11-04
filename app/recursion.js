@@ -5,7 +5,7 @@ exports.recursionAnswers = {
     var fileList = [];
     for (var i=0; i<data.files.length; i++) {
         var file = data.files[i];
-        if (typeof file === "string") {
+        if (typeof file === 'string') {
             // Only add a file if we are in the correct directory
             // or if the directory doesn't matter
             // (e.g. it wasn't specified or we are in a sub-directory of it)
@@ -48,10 +48,9 @@ exports.recursionAnswers = {
     var firstItem = arr[0];
     var restOfArr = arr.slice(1);
     var permutesOfRest = this.permute(restOfArr); // array of arrays
-    var curPermute;
 
     for (var i=0; i<permutesOfRest.length; i++) {
-      curPermutesOfRest = permutesOfRest[i]; // an array
+      var curPermutesOfRest = permutesOfRest[i]; // an array
 
       // Place firstItem at every position
       // (including +1 for adding to the end)
@@ -62,7 +61,7 @@ exports.recursionAnswers = {
         permutes.push(curPermute);
       }
     }
-    
+
     return permutes;
   },
 
@@ -83,7 +82,7 @@ exports.recursionAnswers = {
       return ['()'];
     } else {
       // use a map instead of an array to prevent duplicates
-      // e.g.: "()"+"()()" === "()()"+"()"
+      // e.g.: '()'+'()()' === '()()'+'()'
       var comboMap = {};
       var innerCombos = this.validParentheses(n-1);
 
@@ -92,9 +91,9 @@ exports.recursionAnswers = {
       for (var i=0; i<innerCombos.length; i++) {
         var curInnerCombo = innerCombos[i];
 
-        comboMap["(" + curInnerCombo + ")"] = true;
-        comboMap["()" + curInnerCombo] = true;
-        comboMap[curInnerCombo + "()"] = true;
+        comboMap['(' + curInnerCombo + ')'] = true;
+        comboMap['()' + curInnerCombo] = true;
+        comboMap[curInnerCombo + '()'] = true;
       }
 
       var comboList = [];

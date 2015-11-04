@@ -2,23 +2,23 @@ exports = (typeof window === 'undefined') ? global : window;
 
 exports.countAnswers =  {
   count : function (start, end) {
-  	var num = start;
+    var num = start;
 
-  	// test expects logic to be executed immediately
-	console.log(num);
-	num++;
+    // test expects logic to be executed immediately
+  console.log(num);
+  num++;
 
-  	var intervalId = setInterval(function() {
-  		if (num <= end) {
-			console.log(num);
-			num++;
-  		}
-  	}, 100);
+    var intervalId = setInterval(function() {
+      if (num <= end) {
+      console.log(num);
+      num++;
+      }
+    }, 100);
 
-  	return {
-  		cancel: function() {
-  			clearInterval(intervalId);
-  		}
-  	};
+    return {
+      cancel: function() {
+        clearInterval(intervalId);
+      }
+    };
   }
 };

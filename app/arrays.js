@@ -99,11 +99,11 @@ exports.arraysAnswers = {
     var counts = {};
 
     for (var i=0; i<arr.length; i++) {
-      var item = arr[i];
-      if (counts.hasOwnProperty(item)) {
-        counts[item]++;
+      var num = arr[i];
+      if (counts.hasOwnProperty(num)) {
+        counts[num]++;
       } else {
-        counts[item] = 1;
+        counts[num] = 1;
       }
     }
 

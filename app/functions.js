@@ -6,12 +6,12 @@ exports.functionsAnswers = {
   },
 
   speak : function(fn, obj) {
-    return fn.apply(obj)
+    return fn.apply(obj);
   },
 
   functionFunction : function(str) {
     return function(str2) {
-      return str + ", " + str2;
+      return str + ', ' + str2;
     };
   },
 
@@ -20,7 +20,7 @@ exports.functionsAnswers = {
 
     var createFunctionForNum = function(num) {
       return function() {
-        return fn(arr[num])
+        return fn(arr[num]);
       };
     };
 
@@ -73,7 +73,7 @@ exports.functionsAnswers = {
       // (Note that the `arguments` here are different than the outer `arguments`)
       var allArgs = Array.prototype.concat.apply(functionCreatorArgs, arguments);
       return fn.apply(this, allArgs);
-    }
+    };
   },
 
   curryIt : function(fn) {
@@ -133,7 +133,7 @@ exports.functionsAnswers = {
         argLists[index] = argList;
 
         return funcs[index+1]; // call your inner function
-      }
+      };
       // Store function for later
       funcs[index] = func;
     };
@@ -156,7 +156,7 @@ exports.functionsAnswers = {
 
         var allArgs = getAllArgs();
         return fn.apply(this, allArgs);
-      }
+      };
       // Store function for later
       funcs[index] = func;
     };
