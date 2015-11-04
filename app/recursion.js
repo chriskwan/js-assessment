@@ -48,8 +48,6 @@ exports.recursionAnswers = {
       return [];
     } else if (n === 1) {
       return ['()'];
-    } else if (n === 2) {
-      return ['(())', '()()'];
     } else {
       // use a map instead of an array to prevent duplicates
       // e.g.: "()"+"()()" === "()()"+"()"
