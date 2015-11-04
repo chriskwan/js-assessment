@@ -30,7 +30,47 @@ exports.recursionAnswers = {
   },
 
   permute: function(arr) {
+    if (arr.length <= 0) {
+      return [ [] ];
+    }
 
+    if (arr.length === 1) {
+      return [ arr ];
+    }
+
+    //cwkTODO maybe don't need this
+    if (arr.length === 2) {
+      return [
+        [ arr[0], arr[1] ],
+        [ arr[1], arr[0] ]
+      ];
+    }
+
+    var permutes = [];
+
+    // Generate all the permutations
+    // by taking off the first item and
+    // placing it at every position
+    // of the rest of the array
+    // (for all permutations of the rest of the array)
+    var firstItem = arr[0];
+    var restOfArr = arr.slice(1);
+    var permutesOfRest = this.permute(restOfArr); // array of arrays
+    var curPermute;
+
+    for (var i=0; i<permutesOfRest.length; i++) {
+      curPermutesOfRest = permutesOfRest[i]; // an array
+
+      // Place firstItem at every position
+      // (including +1 for adding to the end)
+      for (var j=0; j<curPermutesOfRest.length+1; j++) {
+        // make a copy first because we will modify it with splice
+        var curPermute = curPermutesOfRest.slice();
+        curPermute.splice(j, 0, firstItem);
+        permutes.push(curPermute);
+      }
+    }
+    return permutes;
   },
 
   fibonacci: function(n) {
