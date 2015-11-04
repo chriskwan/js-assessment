@@ -38,14 +38,6 @@ exports.recursionAnswers = {
       return [ arr ];
     }
 
-    //cwkTODO maybe don't need this
-    if (arr.length === 2) {
-      return [
-        [ arr[0], arr[1] ],
-        [ arr[1], arr[0] ]
-      ];
-    }
-
     var permutes = [];
 
     // Generate all the permutations
@@ -70,6 +62,7 @@ exports.recursionAnswers = {
         permutes.push(curPermute);
       }
     }
+    
     return permutes;
   },
 
