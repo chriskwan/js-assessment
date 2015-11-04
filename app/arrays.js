@@ -75,7 +75,12 @@ exports.arraysAnswers = {
   },
 
   insert : function(arr, item, index) {
-    return arr.slice(0, index).concat( item, arr.slice(index) );
+    // Using slice and concat:
+    //return arr.slice(0, index).concat( item, arr.slice(index) );
+    
+    // Using splice
+    arr.splice(index, 0, item);
+    return arr;
   },
 
   count : function(arr, item) {
